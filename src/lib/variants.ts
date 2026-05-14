@@ -40,8 +40,8 @@ export const staggerContainer: Variants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.1,
+      staggerChildren: 0.08,
+      delayChildren: 0.05,
     },
   },
 };
@@ -56,11 +56,11 @@ export const scaleIn: Variants = {
 };
 
 export const blurIn: Variants = {
-  hidden: { opacity: 0, filter: 'blur(12px)', y: 20 },
+  // filter: blur は GPU 合成を強制してモバイルで LCP を遅らせるため使用しない。
+  hidden: { opacity: 0, y: 14 },
   visible: {
     opacity: 1,
-    filter: 'blur(0px)',
     y: 0,
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
   },
 };

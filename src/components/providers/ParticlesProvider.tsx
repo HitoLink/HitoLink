@@ -5,18 +5,57 @@ import Particles, { initParticlesEngine } from '@tsparticles/react';
 import { loadSlim } from '@tsparticles/slim';
 import type { Engine } from '@tsparticles/engine';
 
+/**
+ * パーティクル描画は装飾用途のため、LCP を阻害しないよう
+ * - requestIdleCallback で初期化を後ろ倒し
+ * - prefers-reduced-motion ユーザーには描画しない
+ */
 export default function ParticlesProvider() {
   const [init, setInit] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState(false);
 
   useEffect(() => {
-    initParticlesEngine(async (engine: Engine) => {
-      await loadSlim(engine);
-    }).then(() => setInit(true));
+    if (typeof window === 'undefined') return;
+
+    // Respect prefers-reduced-motion
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (mq.matches) {
+      setReduceMotion(true);
+      return;
+    }
+
+    const initEngine = () => {
+      initParticlesEngine(async (engine: Engine) => {
+        await loadSlim(engine);
+      }).then(() => setInit(true));
+    };
+
+    // Defer to idle time so initial paint / LCP is not blocked
+    const ric = (
+      window as Window &
+        typeof globalThis & {
+          requestIdleCallback?: (cb: IdleRequestCallback, opts?: IdleRequestOptions) => number;
+          cancelIdleCallback?: (handle: number) => void;
+        }
+    ).requestIdleCallback;
+
+    if (typeof ric === 'function') {
+      const handle = ric(() => initEngine(), { timeout: 2000 });
+      return () => {
+        const cic = (window as Window & typeof globalThis & {
+          cancelIdleCallback?: (handle: number) => void;
+        }).cancelIdleCallback;
+        if (typeof cic === 'function') cic(handle);
+      };
+    }
+
+    const timeout = window.setTimeout(initEngine, 600);
+    return () => window.clearTimeout(timeout);
   }, []);
 
   const particlesLoaded = useCallback(async () => {}, []);
 
-  if (!init) return null;
+  if (reduceMotion || !init) return null;
 
   return (
     <Particles

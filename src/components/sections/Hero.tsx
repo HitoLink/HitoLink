@@ -1,82 +1,82 @@
-'use client';
-
-import { motion } from 'framer-motion';
 import { ChevronDown, ArrowRight } from 'lucide-react';
-import dynamic from 'next/dynamic';
-import { blurIn, staggerContainer } from '@/lib/variants';
+import ParticlesProviderClient from '@/components/providers/ParticlesProviderClient';
 
-const ParticlesProvider = dynamic(
-  () => import('@/components/providers/ParticlesProvider'),
-  { ssr: false }
-);
-
+/**
+ * Hero は LCP セクション。framer-motion による JS-gated な
+ * 初期アニメーションは LCP を遅らせるので、CSS keyframes による
+ * 軽量なエントランス (hero-rise) に置き換えている。
+ */
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-white">
       {/* Particles — navy/blue dots visible on white */}
-      <ParticlesProvider />
+      <ParticlesProviderClient />
 
       {/* Subtle grid */}
-      <div className="absolute inset-0 grid-pattern" />
+      <div className="absolute inset-0 grid-pattern" aria-hidden="true" />
 
       {/* Soft radial gradient — very subtle blue tint at center */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_40%,rgba(219,234,254,0.6)_0%,transparent_70%)]" />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_40%,rgba(219,234,254,0.6)_0%,transparent_70%)]"
+      />
 
       {/* Floating orbs */}
-      <div className="absolute top-1/4 left-[8%] w-[420px] h-[420px] bg-blue-100/70 rounded-full blur-[120px] animate-[float_9s_ease-in-out_infinite]" />
-      <div className="absolute bottom-1/4 right-[8%] w-[360px] h-[360px] bg-indigo-100/60 rounded-full blur-[100px] animate-[float_11s_ease-in-out_infinite_reverse]" />
+      <div
+        aria-hidden="true"
+        className="absolute top-1/4 left-[8%] w-[420px] h-[420px] bg-blue-100/70 rounded-full blur-[120px] animate-[float_9s_ease-in-out_infinite]"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute bottom-1/4 right-[8%] w-[360px] h-[360px] bg-indigo-100/60 rounded-full blur-[100px] animate-[float_11s_ease-in-out_infinite_reverse]"
+      />
 
       {/* Content */}
-      <motion.div
-        className="relative z-10 text-center px-6 max-w-5xl mx-auto"
-        variants={staggerContainer}
-        initial="hidden"
-        animate="visible"
-      >
+      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
         {/* Badge */}
-        <motion.div variants={blurIn} className="mb-8">
+        <div className="mb-8 hero-rise" style={{ animationDelay: '0ms' }}>
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full accent-tag text-xs font-medium tracking-widest uppercase">
             <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse" />
             IT スタートアップ — 人と人・企業をつなぐ
           </span>
-        </motion.div>
+        </div>
 
-        {/* Main headline — solid navy, no gradient */}
-        <motion.h1
-          variants={blurIn}
-          className="text-7xl sm:text-8xl md:text-[10rem] lg:text-[12rem] font-black tracking-tight mb-4 text-[#0F172A] leading-none"
+        {/* Main headline */}
+        <h1
+          className="text-7xl sm:text-8xl md:text-[10rem] lg:text-[12rem] font-black tracking-tight mb-4 text-[#0F172A] leading-none hero-rise"
+          style={{ animationDelay: '60ms' }}
         >
           HitoLink
-        </motion.h1>
+        </h1>
 
         {/* Accent underline */}
-        <motion.div variants={blurIn} className="flex justify-center mb-8">
-          <div className="accent-line w-40" />
-        </motion.div>
+        <div className="flex justify-center mb-8 hero-rise" style={{ animationDelay: '120ms' }}>
+          <div className="accent-line w-40" aria-hidden="true" />
+        </div>
 
         {/* Tagline */}
-        <motion.p
-          variants={blurIn}
-          className="text-2xl sm:text-3xl md:text-4xl text-[#1E3A8A] font-light tracking-wide mb-6 leading-snug"
+        <p
+          className="text-2xl sm:text-3xl md:text-4xl text-[#1E3A8A] font-light tracking-wide mb-6 leading-snug hero-rise"
+          style={{ animationDelay: '180ms' }}
         >
           人と人をつなぎ、
           <br className="sm:hidden" />
           ビジネスに新しい価値を。
-        </motion.p>
+        </p>
 
         {/* Mission */}
-        <motion.p
-          variants={blurIn}
-          className="text-base sm:text-lg text-slate-500 max-w-xl mx-auto mb-12 leading-relaxed"
+        <p
+          className="text-base sm:text-lg text-slate-500 max-w-xl mx-auto mb-12 leading-relaxed hero-rise"
+          style={{ animationDelay: '240ms' }}
         >
           ITの力で、個人と企業の可能性を広げる。<br />
           一人ひとりの強みが輝く「場」をつくっていきます。
-        </motion.p>
+        </p>
 
         {/* CTA */}
-        <motion.div
-          variants={blurIn}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+        <div
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 hero-rise"
+          style={{ animationDelay: '300ms' }}
         >
           <a
             href="#about"
@@ -91,19 +91,17 @@ export default function Hero() {
           >
             お問い合わせ
           </a>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
 
       {/* Scroll indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-400"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.8, duration: 0.8 }}
+      <div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-400 hero-rise"
+        style={{ animationDelay: '600ms' }}
       >
         <span className="text-xs tracking-[0.3em] uppercase">Scroll</span>
         <ChevronDown size={18} className="bounce-indicator" />
-      </motion.div>
+      </div>
     </section>
   );
 }
