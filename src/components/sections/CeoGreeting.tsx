@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Quote } from 'lucide-react';
+import Image from 'next/image';
 import SectionWrapper from '@/components/ui/SectionWrapper';
 import { fadeInLeft, fadeInRight, fadeInUp } from '@/lib/variants';
 
@@ -35,15 +36,23 @@ export default function CeoGreeting() {
           {/* Portrait */}
           <motion.div variants={fadeInLeft}>
             <div className="relative mx-auto max-w-xs lg:max-w-none">
-              <div className="aspect-[3/4] rounded-3xl overflow-hidden bg-gradient-to-br from-blue-50 via-white to-indigo-50 border border-blue-100 shadow-[0_8px_40px_rgba(30,58,138,0.1)] flex flex-col items-center justify-center relative">
-                <div className="absolute inset-0 grid-pattern opacity-40" />
-                <div className="relative z-10 text-center p-10">
-                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-[#1E3A8A] to-[#2563EB] mx-auto mb-6 flex items-center justify-center text-4xl font-bold text-white shadow-[0_4px_30px_rgba(30,58,138,0.35)]">
-                    星
-                  </div>
-                  <div className="text-2xl font-bold text-[#0F172A] mb-1">星野 智範</div>
-                  <div className="text-sm text-slate-500 font-medium tracking-wider mb-5">Tomonori Hoshino</div>
-                  <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-xs text-blue-700">
+              <div className="aspect-[3/4] rounded-3xl overflow-hidden bg-gradient-to-br from-blue-50 via-white to-indigo-50 border border-blue-100 shadow-[0_8px_40px_rgba(30,58,138,0.1)] relative">
+                <Image
+                  src="/ceo.jpg"
+                  alt="HitoLink 代表 星野 智範"
+                  fill
+                  sizes="(min-width: 1024px) 40vw, (min-width: 640px) 60vw, 80vw"
+                  className="object-cover object-top"
+                  quality={85}
+                  placeholder="blur"
+                  blurDataURL="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzIDQiPjxyZWN0IHdpZHRoPSIzIiBoZWlnaHQ9IjQiIGZpbGw9IiNlMmU4ZjAiLz48L3N2Zz4="
+                />
+
+                {/* Name overlay at bottom */}
+                <div className="absolute inset-x-0 bottom-0 z-10 p-5 bg-gradient-to-t from-black/70 via-black/40 to-transparent">
+                  <div className="text-xl font-bold text-white drop-shadow-sm">星野 智範</div>
+                  <div className="text-xs text-white/85 tracking-wider mb-2.5">Tomonori Hoshino</div>
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 backdrop-blur-sm border border-white/60 text-[11px] font-medium text-blue-700">
                     <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
                     代表 / CEO
                   </div>
@@ -55,14 +64,14 @@ export default function CeoGreeting() {
 
           {/* Message */}
           <motion.div variants={fadeInRight} className="space-y-5">
-            <Quote size={44} className="text-blue-200 mb-4" />
+            <Quote size={44} className="text-blue-200 mb-4" aria-hidden="true" />
             {message.map((para, i) => (
               <p
                 key={i}
                 className={`leading-relaxed whitespace-pre-line ${
                   i === 0
                     ? 'text-lg font-semibold text-[#0F172A]'
-                    : 'text-slate-600 text-sm sm:text-base'
+                    : 'text-slate-700 text-sm sm:text-base'
                 }`}
               >
                 {para}
@@ -71,7 +80,7 @@ export default function CeoGreeting() {
             <div className="pt-6 border-t border-slate-100">
               <div className="text-right">
                 <div className="text-base font-bold text-[#0F172A]">星野 智範</div>
-                <div className="text-xs text-slate-500 mt-0.5">HitoLink 代表</div>
+                <div className="text-xs text-slate-600 mt-0.5">HitoLink 代表</div>
               </div>
             </div>
           </motion.div>
