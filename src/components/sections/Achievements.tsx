@@ -1,9 +1,6 @@
-'use client';
-
-import { motion } from 'framer-motion';
 import SectionWrapper from '@/components/ui/SectionWrapper';
 import AnimatedCounter from '@/components/ui/AnimatedCounter';
-import { fadeInUp, scaleIn, staggerContainer } from '@/lib/variants';
+import Reveal from '@/components/ui/Reveal';
 
 const stats = [
   {
@@ -59,7 +56,7 @@ export default function Achievements() {
 
       <div className="relative z-10 mx-auto max-w-7xl px-6">
         {/* Header */}
-        <motion.div variants={fadeInUp} className="text-center mb-16">
+        <Reveal className="text-center mb-16">
           <span className="text-xs font-semibold tracking-[0.25em] uppercase text-blue-600 mb-3 block">
             Achievements
           </span>
@@ -68,14 +65,15 @@ export default function Achievements() {
           </h2>
           <div className="mx-auto w-16 h-0.5 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full" />
           <p className="mt-5 text-slate-600 text-sm">※ 数値は随時更新予定です</p>
-        </motion.div>
+        </Reveal>
 
         {/* Stats grid */}
-        <motion.div variants={staggerContainer} className="grid grid-cols-2 lg:grid-cols-4 gap-5">
-          {stats.map((stat) => (
-            <motion.div
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
+          {stats.map((stat, i) => (
+            <Reveal
               key={stat.label}
-              variants={scaleIn}
+              variant="scale"
+              delay={i * 0.08}
               className={`${stat.bg} rounded-2xl p-6 sm:p-8 text-center border ${stat.border} transition-all duration-300 ${stat.glow} cursor-default`}
             >
               <div className={`text-5xl sm:text-6xl font-black ${stat.color} mb-3`}>
@@ -83,17 +81,17 @@ export default function Achievements() {
               </div>
               <div className="text-sm font-semibold text-[#0F172A] mb-1">{stat.label}</div>
               <div className="text-xs text-slate-600">{stat.sub}</div>
-            </motion.div>
+            </Reveal>
           ))}
-        </motion.div>
+        </div>
 
         {/* Bottom message */}
-        <motion.div variants={fadeInUp} className="text-center mt-16">
+        <Reveal className="text-center mt-16">
           <p className="text-slate-700 max-w-lg mx-auto leading-relaxed">
             技術・実績・人とのつながりが確かに残ること。<br />
             そして、「やってよかった」と思えるものであること。
           </p>
-        </motion.div>
+        </Reveal>
       </div>
     </SectionWrapper>
   );

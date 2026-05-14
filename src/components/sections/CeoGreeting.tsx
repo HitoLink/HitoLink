@@ -1,10 +1,7 @@
-'use client';
-
-import { motion } from 'framer-motion';
 import { Quote } from 'lucide-react';
 import Image from 'next/image';
 import SectionWrapper from '@/components/ui/SectionWrapper';
-import { fadeInLeft, fadeInRight, fadeInUp } from '@/lib/variants';
+import Reveal from '@/components/ui/Reveal';
 
 const message = [
   'はじめまして、HitoLink 代表の星野 智範です。',
@@ -22,7 +19,7 @@ export default function CeoGreeting() {
     <SectionWrapper id="ceo" className="py-24 md:py-32 bg-white overflow-hidden">
       <div className="mx-auto max-w-7xl px-6">
         {/* Header */}
-        <motion.div variants={fadeInUp} className="text-center mb-20">
+        <Reveal className="text-center mb-20">
           <span className="text-xs font-semibold tracking-[0.25em] uppercase text-blue-600 mb-3 block">
             CEO Message
           </span>
@@ -30,11 +27,11 @@ export default function CeoGreeting() {
             代表挨拶
           </h2>
           <div className="mx-auto w-16 h-0.5 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full" />
-        </motion.div>
+        </Reveal>
 
         <div className="grid lg:grid-cols-2 gap-14 items-start">
           {/* Portrait */}
-          <motion.div variants={fadeInLeft}>
+          <Reveal variant="left">
             <div className="relative mx-auto max-w-xs lg:max-w-none">
               <div className="aspect-[3/4] rounded-3xl overflow-hidden bg-gradient-to-br from-blue-50 via-white to-indigo-50 border border-blue-100 shadow-[0_8px_40px_rgba(30,58,138,0.1)] relative">
                 <Image
@@ -60,10 +57,10 @@ export default function CeoGreeting() {
               </div>
               <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-2/3 h-6 bg-blue-200/50 blur-2xl rounded-full" />
             </div>
-          </motion.div>
+          </Reveal>
 
           {/* Message */}
-          <motion.div variants={fadeInRight} className="space-y-5">
+          <Reveal variant="right" className="space-y-5">
             <Quote size={44} className="text-blue-200 mb-4" aria-hidden="true" />
             {message.map((para, i) => (
               <p
@@ -83,7 +80,7 @@ export default function CeoGreeting() {
                 <div className="text-xs text-slate-600 mt-0.5">HitoLink 代表</div>
               </div>
             </div>
-          </motion.div>
+          </Reveal>
         </div>
       </div>
     </SectionWrapper>

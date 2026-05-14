@@ -1,6 +1,3 @@
-'use client';
-
-import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 interface ButtonProps {
@@ -12,6 +9,10 @@ interface ButtonProps {
   external?: boolean;
 }
 
+/**
+ * Button primitive. Hover scale is done with `hover:scale-[1.02]` +
+ * `active:scale-[0.98]` so we can drop framer-motion entirely.
+ */
 export default function Button({
   children,
   href,
@@ -21,7 +22,7 @@ export default function Button({
   external = false,
 }: ButtonProps) {
   const base =
-    'inline-flex items-center gap-2 rounded-xl px-6 py-3 font-semibold text-sm transition-all duration-300 cursor-pointer';
+    'inline-flex items-center gap-2 rounded-xl px-6 py-3 font-semibold text-sm transition-all duration-300 cursor-pointer hover:scale-[1.02] active:scale-[0.98] will-change-transform';
 
   const variants = {
     primary:
@@ -32,13 +33,7 @@ export default function Button({
   };
 
   const content = (
-    <motion.span
-      className={cn(base, variants[variant], className)}
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-    >
-      {children}
-    </motion.span>
+    <span className={cn(base, variants[variant], className)}>{children}</span>
   );
 
   if (href) {

@@ -1,10 +1,7 @@
-'use client';
-
-import { motion } from 'framer-motion';
 import { ArrowUpRight, Code2, Lightbulb } from 'lucide-react';
 import SectionWrapper from '@/components/ui/SectionWrapper';
 import GradientText from '@/components/ui/GradientText';
-import { fadeInUp, fadeInLeft, fadeInRight } from '@/lib/variants';
+import Reveal from '@/components/ui/Reveal';
 
 // TODO: Replace with actual Google Forms URL
 const FORMS_URL = 'https://forms.google.com/TODO_REPLACE_WITH_ACTUAL_URL';
@@ -20,7 +17,7 @@ const positions = [
     glowClass: 'shadow-[0_0_40px_rgba(59,130,246,0.2)]',
     borderClass: 'border-blue-500/20',
     btnClass: 'from-blue-600 to-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.35)] hover:shadow-[0_0_35px_rgba(59,130,246,0.55)]',
-    variants: fadeInLeft,
+    revealVariant: 'left' as const,
   },
   {
     icon: Lightbulb,
@@ -32,7 +29,7 @@ const positions = [
     glowClass: 'shadow-[0_0_40px_rgba(139,92,246,0.2)]',
     borderClass: 'border-purple-500/20',
     btnClass: 'from-purple-600 to-purple-500 shadow-[0_0_20px_rgba(139,92,246,0.35)] hover:shadow-[0_0_35px_rgba(139,92,246,0.55)]',
-    variants: fadeInRight,
+    revealVariant: 'right' as const,
   },
 ];
 
@@ -48,7 +45,7 @@ export default function Recruitment() {
 
       <div className="relative z-10 mx-auto max-w-7xl px-6">
         {/* Header */}
-        <motion.div variants={fadeInUp} className="text-center mb-16">
+        <Reveal className="text-center mb-16">
           <span className="text-xs font-semibold tracking-[0.2em] uppercase text-blue-400 mb-3 block">
             Join Us
           </span>
@@ -59,14 +56,14 @@ export default function Recruitment() {
             尖った人が活躍できること。無理をせず、それぞれの得意分野で価値を出せること。
             HitoLinkはそんな「場」を目指しています。
           </p>
-        </motion.div>
+        </Reveal>
 
         {/* Cards */}
         <div className="grid md:grid-cols-2 gap-6 mb-12">
           {positions.map((pos) => (
-            <motion.div
+            <Reveal
               key={pos.title}
-              variants={pos.variants}
+              variant={pos.revealVariant}
               className={`glass-card rounded-2xl p-8 border ${pos.borderClass} ${pos.glowClass} flex flex-col`}
             >
               <div className={`p-3 rounded-xl glass-card ${pos.iconColor} w-fit mb-5`}>
@@ -96,19 +93,19 @@ export default function Recruitment() {
                 応募フォームを開く
                 <ArrowUpRight size={16} />
               </a>
-            </motion.div>
+            </Reveal>
           ))}
         </div>
 
         {/* Bottom note */}
-        <motion.div variants={fadeInUp} className="text-center">
+        <Reveal className="text-center">
           <p className="text-slate-500 text-sm">
             会社が個人の夢を縛る存在ではなく、むしろ可能性を広げる存在でありたい。
           </p>
           <p className="text-slate-600 text-xs mt-2">
             まずはお気軽にフォームよりご連絡ください。
           </p>
-        </motion.div>
+        </Reveal>
       </div>
     </SectionWrapper>
   );
