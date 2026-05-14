@@ -44,11 +44,13 @@ export default function Hero() {
           </span>
         </div>
 
-        {/* Main headline */}
+        {/* Main headline — intentionally opaque at first paint so the
+            browser picks this 12rem H1 as the LCP element. Adding any
+            opacity-from-zero animation here pushes LCP detection back
+            to the tiny Navbar "HitoLink" span and tanks the score. */}
         <h1
           id="hero-heading"
-          className="text-7xl sm:text-8xl md:text-[10rem] lg:text-[12rem] font-black tracking-tight mb-4 text-[#0F172A] leading-none hero-rise"
-          style={{ animationDelay: '60ms' }}
+          className="text-7xl sm:text-8xl md:text-[10rem] lg:text-[12rem] font-black tracking-tight mb-4 text-[#0F172A] leading-none"
         >
           HitoLink
         </h1>

@@ -4,7 +4,11 @@
   --color-bg-primary: #FFFFFF;
   --color-bg-secondary: #F0F4FF;
 
-  --font-sans: var(--font-inter), var(--font-noto-sans-jp), sans-serif;
+  /* Inter（Web フォント）+ システム日本語フォント。Noto Sans JP を
+     next/font で読むと CSS が肥大化し LCP を悪化させるため、日本語は
+     OS の高品質ゴシックでフォールバックさせる。 */
+  --font-sans: var(--font-inter), "Hiragino Sans", "Hiragino Kaku Gothic ProN",
+    "Yu Gothic", "Yu Gothic UI", "Noto Sans CJK JP", "Meiryo", sans-serif;
 }
 
 @keyframes float {

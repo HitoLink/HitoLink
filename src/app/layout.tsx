@@ -1,20 +1,15 @@
 import type { Metadata } from 'next';
-import { Inter, Noto_Sans_JP } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import './globals.css';
 
+// Noto Sans JP は next/font 経由で読み込むと unicode-range ごとに数百の
+// @font-face を CSS に出力し、188KB の render-blocking CSS を生み出して
+// LCP を 7-8 秒に押し上げていた。日本語はシステムフォント
+// (Hiragino Sans / Yu Gothic / Noto Sans CJK JP) でフォールバックさせ、
+// Inter だけを Web フォントとして配信する。
 const inter = Inter({
   variable: '--font-inter',
   subsets: ['latin'],
-  display: 'swap',
-});
-
-const notoSansJP = Noto_Sans_JP({
-  variable: '--font-noto-sans-jp',
-  subsets: ['latin'],
-  // 400 = 本文 / 600 = 強調 / 700 = 見出し。900 は h1 のみで使うが、
-  // Noto Sans JP は @font-face を unicode-range ごとに大量生成して CSS
-  // バンドルを肥大化させるため、必要最小限のウェイトに絞る。
-  weight: ['400', '700'],
   display: 'swap',
 });
 
@@ -98,7 +93,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ja" className={`${inter.variable} ${notoSansJP.variable}`}>
+    <html lang="ja" className={inter.variable}>
       <body className="antialiased">
         {children}
         <script
