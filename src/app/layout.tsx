@@ -11,7 +11,10 @@ const inter = Inter({
 const notoSansJP = Noto_Sans_JP({
   variable: '--font-noto-sans-jp',
   subsets: ['latin'],
-  weight: ['400', '500', '700', '900'],
+  // 400 = 本文 / 600 = 強調 / 700 = 見出し。900 は h1 のみで使うが、
+  // Noto Sans JP は @font-face を unicode-range ごとに大量生成して CSS
+  // バンドルを肥大化させるため、必要最小限のウェイトに絞る。
+  weight: ['400', '700'],
   display: 'swap',
 });
 

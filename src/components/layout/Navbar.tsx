@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
@@ -19,16 +18,13 @@ export default function Navbar() {
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handler);
+    window.addEventListener('scroll', handler, { passive: true });
     return () => window.removeEventListener('scroll', handler);
   }, []);
 
   return (
     <>
-      <motion.nav
-        initial={{ y: -80, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      <nav
         className={cn(
           'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
           scrolled
@@ -77,40 +73,34 @@ export default function Navbar() {
             {menuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
-      </motion.nav>
+      </nav>
 
       {/* Mobile menu */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-x-0 top-[60px] z-40 bg-white/97 backdrop-blur-md border-b border-slate-200 shadow-sm md:hidden"
-          >
-            <div className="px-6 py-4 flex flex-col gap-1">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="px-4 py-3 text-sm text-slate-600 hover:text-[#1E3A8A] rounded-lg hover:bg-blue-50 transition-all"
-                >
-                  {link.label}
-                </a>
-              ))}
+      {menuOpen && (
+        <div
+          className="fixed inset-x-0 top-[60px] z-40 bg-white/97 backdrop-blur-md border-b border-slate-200 shadow-sm md:hidden animate-[hero-rise_0.2s_ease-out_both]"
+        >
+          <div className="px-6 py-4 flex flex-col gap-1">
+            {navLinks.map((link) => (
               <a
-                href="#contact"
+                key={link.href}
+                href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="mt-2 px-4 py-3 text-sm font-semibold text-center bg-[#1E3A8A] hover:bg-[#1E40AF] text-white rounded-lg transition-all"
+                className="px-4 py-3 text-sm text-slate-600 hover:text-[#1E3A8A] rounded-lg hover:bg-blue-50 transition-all"
               >
-                お問い合わせ
+                {link.label}
               </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            ))}
+            <a
+              href="#contact"
+              onClick={() => setMenuOpen(false)}
+              className="mt-2 px-4 py-3 text-sm font-semibold text-center bg-[#1E3A8A] hover:bg-[#1E40AF] text-white rounded-lg transition-all"
+            >
+              お問い合わせ
+            </a>
+          </div>
+        </div>
+      )}
     </>
   );
 }
