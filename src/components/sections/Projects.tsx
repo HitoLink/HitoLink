@@ -1,9 +1,6 @@
-'use client';
-
-import { motion } from 'framer-motion';
 import { Heart, MessageSquare, Building2, Zap, type LucideIcon } from 'lucide-react';
 import SectionWrapper from '@/components/ui/SectionWrapper';
-import { fadeInUp, staggerContainer } from '@/lib/variants';
+import Reveal from '@/components/ui/Reveal';
 
 type ProjectItem = {
   icon: LucideIcon;
@@ -74,9 +71,8 @@ const tobProjects: ProjectItem[] = [
 
 function ProjectCard({ project }: { project: ProjectItem }) {
   return (
-    <motion.div
-      className={`${project.bgColor} rounded-2xl p-6 border ${project.borderColor} group cursor-default relative transition-all duration-300 ${project.glow}`}
-      whileHover={{ y: -5 }}
+    <div
+      className={`${project.bgColor} rounded-2xl p-6 border ${project.borderColor} group cursor-default relative transition-all duration-300 ${project.glow} hover:-translate-y-1`}
     >
       <div className="flex items-start justify-between mb-5">
         <div className={`p-3 rounded-xl ${project.iconBg} ${project.iconColor} transition-transform duration-300 group-hover:scale-110`} aria-hidden="true">
@@ -92,7 +88,7 @@ function ProjectCard({ project }: { project: ProjectItem }) {
       <p className="text-sm text-slate-600 leading-relaxed">
         {project.description}
       </p>
-    </motion.div>
+    </div>
   );
 }
 
@@ -101,7 +97,7 @@ export default function Projects() {
     <SectionWrapper id="projects" className="py-24 md:py-32 bg-white">
       <div className="mx-auto max-w-7xl px-6">
         {/* Header */}
-        <motion.div variants={fadeInUp} className="text-center mb-6">
+        <Reveal className="text-center mb-6">
           <span className="text-xs font-semibold tracking-[0.25em] uppercase text-blue-600 mb-3 block">
             Projects
           </span>
@@ -109,53 +105,53 @@ export default function Projects() {
             プロジェクト紹介
           </h2>
           <div className="mx-auto w-16 h-0.5 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full" />
-        </motion.div>
+        </Reveal>
 
-        <motion.p variants={fadeInUp} className="text-center text-slate-600 mb-16 max-w-xl mx-auto">
+        <Reveal as="p" className="text-center text-slate-600 mb-16 max-w-xl mx-auto">
           私たちは現在、「つながり」をテーマに複数のプロジェクトを進めています。
-        </motion.p>
+        </Reveal>
 
         {/* ToC section */}
         <div className="mb-12">
-          <motion.div variants={fadeInUp} className="flex items-center gap-3 mb-6">
+          <Reveal className="flex items-center gap-3 mb-6">
             <div className="h-px flex-1 bg-gradient-to-r from-transparent to-blue-200" />
             <span className="text-sm font-semibold text-blue-700 tracking-wider px-4 py-1.5 rounded-full bg-blue-50 border border-blue-200">
               ToC 向けサービス
             </span>
             <div className="h-px flex-1 bg-gradient-to-l from-transparent to-blue-200" />
-          </motion.div>
+          </Reveal>
 
-          <motion.div variants={staggerContainer} className="grid sm:grid-cols-2 gap-5">
-            {tocProjects.map((project) => (
-              <motion.div key={project.title} variants={fadeInUp}>
+          <div className="grid sm:grid-cols-2 gap-5">
+            {tocProjects.map((project, i) => (
+              <Reveal key={project.title} delay={i * 0.08}>
                 <ProjectCard project={project} />
-              </motion.div>
+              </Reveal>
             ))}
-          </motion.div>
+          </div>
         </div>
 
         {/* ToB section */}
         <div>
-          <motion.div variants={fadeInUp} className="flex items-center gap-3 mb-6">
+          <Reveal className="flex items-center gap-3 mb-6">
             <div className="h-px flex-1 bg-gradient-to-r from-transparent to-indigo-200" />
             <span className="text-sm font-semibold text-indigo-700 tracking-wider px-4 py-1.5 rounded-full bg-indigo-50 border border-indigo-200">
               ToB 向けプロジェクト
             </span>
             <div className="h-px flex-1 bg-gradient-to-l from-transparent to-indigo-200" />
-          </motion.div>
+          </Reveal>
 
-          <motion.div variants={staggerContainer} className="grid sm:grid-cols-2 gap-5">
-            {tobProjects.map((project) => (
-              <motion.div key={project.title} variants={fadeInUp}>
+          <div className="grid sm:grid-cols-2 gap-5">
+            {tobProjects.map((project, i) => (
+              <Reveal key={project.title} delay={i * 0.08}>
                 <ProjectCard project={project} />
-              </motion.div>
+              </Reveal>
             ))}
-          </motion.div>
+          </div>
         </div>
 
-        <motion.p variants={fadeInUp} className="text-center text-slate-600 text-sm mt-12">
+        <Reveal as="p" className="text-center text-slate-600 text-sm mt-12">
           それぞれの領域で、「つながる価値」を提供しています。
-        </motion.p>
+        </Reveal>
       </div>
     </SectionWrapper>
   );
