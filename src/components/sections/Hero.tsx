@@ -32,17 +32,21 @@ export default function Hero() {
       />
 
       {/* Content */}
-      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
+      <div
+        className="relative z-10 text-center px-6 max-w-5xl mx-auto"
+        aria-labelledby="hero-heading"
+      >
         {/* Badge */}
         <div className="mb-8 hero-rise" style={{ animationDelay: '0ms' }}>
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full accent-tag text-xs font-medium tracking-widest uppercase">
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse" />
+            <span aria-hidden="true" className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse" />
             IT スタートアップ — 人と人・企業をつなぐ
           </span>
         </div>
 
         {/* Main headline */}
         <h1
+          id="hero-heading"
           className="text-7xl sm:text-8xl md:text-[10rem] lg:text-[12rem] font-black tracking-tight mb-4 text-[#0F172A] leading-none hero-rise"
           style={{ animationDelay: '60ms' }}
         >
@@ -66,7 +70,7 @@ export default function Hero() {
 
         {/* Mission */}
         <p
-          className="text-base sm:text-lg text-slate-500 max-w-xl mx-auto mb-12 leading-relaxed hero-rise"
+          className="text-base sm:text-lg text-slate-700 max-w-xl mx-auto mb-12 leading-relaxed hero-rise"
           style={{ animationDelay: '240ms' }}
         >
           ITの力で、個人と企業の可能性を広げる。<br />
@@ -80,14 +84,14 @@ export default function Hero() {
         >
           <a
             href="#about"
-            className="group inline-flex items-center gap-2 px-8 py-4 bg-[#1E3A8A] hover:bg-[#1E40AF] text-white font-semibold rounded-xl transition-all duration-300 shadow-[0_4px_20px_rgba(30,58,138,0.3)] hover:shadow-[0_6px_30px_rgba(30,58,138,0.45)]"
+            className="group inline-flex items-center gap-2 px-8 py-4 bg-[#1E3A8A] hover:bg-[#1E40AF] text-white font-semibold rounded-xl transition-all duration-300 shadow-[0_4px_20px_rgba(30,58,138,0.3)] hover:shadow-[0_6px_30px_rgba(30,58,138,0.45)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
           >
             私たちについて
-            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-200" />
+            <ArrowRight size={18} aria-hidden="true" className="group-hover:translate-x-1 transition-transform duration-200" />
           </a>
           <a
             href="#contact"
-            className="inline-flex items-center gap-2 px-8 py-4 border border-[#1E3A8A]/25 hover:border-[#1E3A8A]/60 text-[#1E3A8A] font-medium rounded-xl transition-all duration-300 hover:bg-blue-50"
+            className="inline-flex items-center gap-2 px-8 py-4 border border-[#1E3A8A]/25 hover:border-[#1E3A8A]/60 text-[#1E3A8A] font-medium rounded-xl transition-all duration-300 hover:bg-blue-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
           >
             お問い合わせ
           </a>
@@ -96,11 +100,12 @@ export default function Hero() {
 
       {/* Scroll indicator */}
       <div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-400 hero-rise"
+        aria-hidden="true"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-600 hero-rise"
         style={{ animationDelay: '600ms' }}
       >
         <span className="text-xs tracking-[0.3em] uppercase">Scroll</span>
-        <ChevronDown size={18} className="bounce-indicator" />
+        <ChevronDown size={18} className="bounce-indicator" aria-hidden="true" />
       </div>
     </section>
   );

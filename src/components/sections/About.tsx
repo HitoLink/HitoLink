@@ -61,11 +61,11 @@ export default function About() {
               <span className="text-blue-700 font-semibold">人と人、そして企業と人をつなぐ</span>
               サービスを提供するチームです。
             </p>
-            <p className="text-slate-600 leading-relaxed">
+            <p className="text-slate-700 leading-relaxed">
               現代では、企業とユーザーの距離が広がり、価値が正しく届かない課題が存在しています。
               私たちは、ITの力を活用し、企業とユーザーを自然につなぐ仕組みを開発しています。
             </p>
-            <p className="text-slate-600 leading-relaxed">
+            <p className="text-slate-700 leading-relaxed">
               toB向けのプロジェクトにも取り組み、実際のビジネス現場で活用されるアプリケーションの開発を行っています。
               テクノロジーを通じて、新しいつながりと価値を生み出していきます。
             </p>
@@ -74,15 +74,15 @@ export default function About() {
             <div className="flex gap-10 pt-6 border-t border-slate-200">
               <div>
                 <div className="text-2xl font-bold text-[#0F172A]">ToC &amp; ToB</div>
-                <div className="text-xs text-slate-500 mt-1">両軸の開発体制</div>
+                <div className="text-xs text-slate-600 mt-1">両軸の開発体制</div>
               </div>
               <div>
                 <div className="text-2xl font-bold text-[#0F172A]">複数 PJ</div>
-                <div className="text-xs text-slate-500 mt-1">同時並行で推進</div>
+                <div className="text-xs text-slate-600 mt-1">同時並行で推進</div>
               </div>
               <div>
                 <div className="text-2xl font-bold text-[#0F172A]">成長</div>
-                <div className="text-xs text-slate-500 mt-1">試し、確かめ、積み重ねる</div>
+                <div className="text-xs text-slate-600 mt-1">試し、確かめ、積み重ねる</div>
               </div>
             </div>
           </motion.div>
@@ -96,12 +96,12 @@ export default function About() {
                 whileHover={{ y: -3 }}
               >
                 <div className="flex items-center gap-4">
-                  <div className={`p-3 rounded-xl ${pillar.iconBg} ${pillar.accent} shrink-0`}>
+                  <div className={`p-3 rounded-xl ${pillar.iconBg} ${pillar.accent} shrink-0`} aria-hidden="true">
                     <pillar.icon size={20} />
                   </div>
                   <div>
                     <h3 className={`font-semibold ${pillar.accent} mb-0.5`}>{pillar.title}</h3>
-                    <p className="text-sm text-slate-600 leading-relaxed">{pillar.description}</p>
+                    <p className="text-sm text-slate-700 leading-relaxed">{pillar.description}</p>
                   </div>
                 </div>
               </motion.div>
