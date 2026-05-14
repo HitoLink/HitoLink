@@ -1,6 +1,3 @@
-'use client';
-
-import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 interface GlassCardProps {
@@ -10,6 +7,10 @@ interface GlassCardProps {
   glowColor?: 'blue' | 'purple' | 'cyan';
 }
 
+/**
+ * Glass card primitive. Hover lift is handled via CSS `transition` + `:hover`
+ * instead of framer-motion to keep this a Server Component and remove the JS.
+ */
 export default function GlassCard({
   children,
   className,
@@ -23,17 +24,15 @@ export default function GlassCard({
   };
 
   return (
-    <motion.div
+    <div
       className={cn(
         'bg-white rounded-2xl p-6 border border-slate-100',
         hover && glowColors[glowColor],
-        hover && 'transition-all duration-300',
+        hover && 'transition-all duration-300 hover:-translate-y-1',
         className
       )}
-      whileHover={hover ? { y: -4 } : undefined}
-      transition={{ duration: 0.2 }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
