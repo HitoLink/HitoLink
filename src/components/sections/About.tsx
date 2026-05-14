@@ -1,9 +1,6 @@
-'use client';
-
-import { motion } from 'framer-motion';
 import { Users2, Building2, Zap } from 'lucide-react';
 import SectionWrapper from '@/components/ui/SectionWrapper';
-import { fadeInLeft, fadeInRight, fadeInUp } from '@/lib/variants';
+import Reveal from '@/components/ui/Reveal';
 
 const pillars = [
   {
@@ -43,7 +40,7 @@ export default function About() {
     <SectionWrapper id="about" className="py-24 md:py-32 bg-[#F0F4FF] relative">
       <div className="mx-auto max-w-7xl px-6">
         {/* Section header */}
-        <motion.div variants={fadeInUp} className="text-center mb-20">
+        <Reveal className="text-center mb-20">
           <span className="text-xs font-semibold tracking-[0.25em] uppercase text-blue-600 mb-3 block">
             About Us
           </span>
@@ -51,11 +48,11 @@ export default function About() {
             団体概要
           </h2>
           <div className="mx-auto w-16 h-0.5 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full" />
-        </motion.div>
+        </Reveal>
 
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: text */}
-          <motion.div variants={fadeInLeft} className="space-y-6">
+          <Reveal variant="left" className="space-y-6">
             <p className="text-xl text-[#0F172A] leading-relaxed font-medium">
               私たちは、アプリ開発を通じて
               <span className="text-blue-700 font-semibold">人と人、そして企業と人をつなぐ</span>
@@ -85,15 +82,14 @@ export default function About() {
                 <div className="text-xs text-slate-600 mt-1">試し、確かめ、積み重ねる</div>
               </div>
             </div>
-          </motion.div>
+          </Reveal>
 
           {/* Right: pillar cards */}
-          <motion.div variants={fadeInRight} className="flex flex-col gap-4">
+          <Reveal variant="right" className="flex flex-col gap-4">
             {pillars.map((pillar) => (
-              <motion.div
+              <div
                 key={pillar.title}
-                className={`rounded-2xl p-5 border ${pillar.border} ${pillar.bg} transition-all duration-300 ${pillar.glow} cursor-default`}
-                whileHover={{ y: -3 }}
+                className={`rounded-2xl p-5 border ${pillar.border} ${pillar.bg} transition-all duration-300 ${pillar.glow} hover:-translate-y-1 cursor-default`}
               >
                 <div className="flex items-center gap-4">
                   <div className={`p-3 rounded-xl ${pillar.iconBg} ${pillar.accent} shrink-0`} aria-hidden="true">
@@ -104,9 +100,9 @@ export default function About() {
                     <p className="text-sm text-slate-700 leading-relaxed">{pillar.description}</p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </Reveal>
         </div>
       </div>
     </SectionWrapper>
