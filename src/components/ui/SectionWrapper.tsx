@@ -10,14 +10,12 @@ interface SectionWrapperProps {
   children: React.ReactNode;
   className?: string;
   id?: string;
-  delay?: number;
 }
 
 export default function SectionWrapper({
   children,
   className,
   id,
-  delay = 0,
 }: SectionWrapperProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-80px' });

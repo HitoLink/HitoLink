@@ -5,6 +5,10 @@ import Particles, { initParticlesEngine } from '@tsparticles/react';
 import { loadSlim } from '@tsparticles/slim';
 import type { Engine } from '@tsparticles/engine';
 
+const prefersReducedMotion = () =>
+  typeof window !== 'undefined' &&
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 /**
  * パーティクル描画は装飾用途のため、LCP を阻害しないよう
  * - requestIdleCallback で初期化を後ろ倒し
@@ -12,17 +16,12 @@ import type { Engine } from '@tsparticles/engine';
  */
 export default function ParticlesProvider() {
   const [init, setInit] = useState(false);
-  const [reduceMotion, setReduceMotion] = useState(false);
+  // Lazy initialize from media query so we don't trigger a cascading
+  // setState during the first effect run.
+  const [reduceMotion] = useState(prefersReducedMotion);
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-
-    // Respect prefers-reduced-motion
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (mq.matches) {
-      setReduceMotion(true);
-      return;
-    }
+    if (typeof window === 'undefined' || reduceMotion) return;
 
     const initEngine = () => {
       initParticlesEngine(async (engine: Engine) => {
@@ -51,7 +50,7 @@ export default function ParticlesProvider() {
 
     const timeout = window.setTimeout(initEngine, 600);
     return () => window.clearTimeout(timeout);
-  }, []);
+  }, [reduceMotion]);
 
   const particlesLoaded = useCallback(async () => {}, []);
 

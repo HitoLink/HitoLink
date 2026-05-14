@@ -67,7 +67,7 @@ export default function Achievements() {
             実績・数字で見る HitoLink
           </h2>
           <div className="mx-auto w-16 h-0.5 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full" />
-          <p className="mt-5 text-slate-400 text-sm">※ 数値は随時更新予定です</p>
+          <p className="mt-5 text-slate-600 text-sm">※ 数値は随時更新予定です</p>
         </motion.div>
 
         {/* Stats grid */}
@@ -82,14 +82,14 @@ export default function Achievements() {
                 <AnimatedCounter end={stat.value} suffix={stat.suffix} />
               </div>
               <div className="text-sm font-semibold text-[#0F172A] mb-1">{stat.label}</div>
-              <div className="text-xs text-slate-400">{stat.sub}</div>
+              <div className="text-xs text-slate-600">{stat.sub}</div>
             </motion.div>
           ))}
         </motion.div>
 
         {/* Bottom message */}
         <motion.div variants={fadeInUp} className="text-center mt-16">
-          <p className="text-slate-500 max-w-lg mx-auto leading-relaxed">
+          <p className="text-slate-700 max-w-lg mx-auto leading-relaxed">
             技術・実績・人とのつながりが確かに残ること。<br />
             そして、「やってよかった」と思えるものであること。
           </p>

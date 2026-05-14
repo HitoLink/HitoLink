@@ -25,6 +25,7 @@ export default function Navbar() {
   return (
     <>
       <nav
+        aria-label="メインナビゲーション"
         className={cn(
           'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
           scrolled
@@ -34,12 +35,17 @@ export default function Navbar() {
       >
         <div className="mx-auto max-w-7xl px-6 flex items-center justify-between">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2.5 group">
+          <a
+            href="#"
+            aria-label="HitoLink トップへ"
+            className="flex items-center gap-2.5 group rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+          >
             <Image
               src="/Icon.png"
-              alt="HitoLink icon"
+              alt=""
               width={32}
               height={32}
+              priority
               className="w-8 h-8 object-contain"
             />
             <span className="text-xl font-bold text-[#0F172A] tracking-wide">HitoLink</span>
@@ -51,14 +57,14 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="px-4 py-2 text-sm text-slate-600 hover:text-[#1E3A8A] rounded-lg hover:bg-blue-50 transition-all duration-200"
+                className="px-4 py-2 text-sm text-slate-700 hover:text-[#1E3A8A] rounded-lg hover:bg-blue-50 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
               >
                 {link.label}
               </a>
             ))}
             <a
               href="#contact"
-              className="ml-4 px-5 py-2 text-sm font-semibold bg-[#1E3A8A] hover:bg-[#1E40AF] text-white rounded-lg transition-all duration-200 shadow-[0_2px_12px_rgba(30,58,138,0.25)] hover:shadow-[0_4px_20px_rgba(30,58,138,0.35)]"
+              className="ml-4 px-5 py-2 text-sm font-semibold bg-[#1E3A8A] hover:bg-[#1E40AF] text-white rounded-lg transition-all duration-200 shadow-[0_2px_12px_rgba(30,58,138,0.25)] hover:shadow-[0_4px_20px_rgba(30,58,138,0.35)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
             >
               お問い合わせ
             </a>
@@ -66,11 +72,14 @@ export default function Navbar() {
 
           {/* Mobile burger */}
           <button
-            className="md:hidden text-slate-600 hover:text-[#1E3A8A] transition-colors"
+            type="button"
+            className="md:hidden text-slate-700 hover:text-[#1E3A8A] transition-colors rounded p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
             onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="メニューを開く"
+            aria-label={menuOpen ? 'メニューを閉じる' : 'メニューを開く'}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
           >
-            {menuOpen ? <X size={24} /> : <Menu size={24} />}
+            {menuOpen ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
           </button>
         </div>
       </nav>
@@ -78,6 +87,7 @@ export default function Navbar() {
       {/* Mobile menu */}
       {menuOpen && (
         <div
+          id="mobile-menu"
           className="fixed inset-x-0 top-[60px] z-40 bg-white/97 backdrop-blur-md border-b border-slate-200 shadow-sm md:hidden animate-[hero-rise_0.2s_ease-out_both]"
         >
           <div className="px-6 py-4 flex flex-col gap-1">
@@ -86,7 +96,7 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="px-4 py-3 text-sm text-slate-600 hover:text-[#1E3A8A] rounded-lg hover:bg-blue-50 transition-all"
+                className="px-4 py-3 text-sm text-slate-700 hover:text-[#1E3A8A] rounded-lg hover:bg-blue-50 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
               >
                 {link.label}
               </a>
@@ -94,7 +104,7 @@ export default function Navbar() {
             <a
               href="#contact"
               onClick={() => setMenuOpen(false)}
-              className="mt-2 px-4 py-3 text-sm font-semibold text-center bg-[#1E3A8A] hover:bg-[#1E40AF] text-white rounded-lg transition-all"
+              className="mt-2 px-4 py-3 text-sm font-semibold text-center bg-[#1E3A8A] hover:bg-[#1E40AF] text-white rounded-lg transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
             >
               お問い合わせ
             </a>

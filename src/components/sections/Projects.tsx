@@ -79,7 +79,7 @@ function ProjectCard({ project }: { project: ProjectItem }) {
       whileHover={{ y: -5 }}
     >
       <div className="flex items-start justify-between mb-5">
-        <div className={`p-3 rounded-xl ${project.iconBg} ${project.iconColor} transition-transform duration-300 group-hover:scale-110`}>
+        <div className={`p-3 rounded-xl ${project.iconBg} ${project.iconColor} transition-transform duration-300 group-hover:scale-110`} aria-hidden="true">
           <project.icon size={22} />
         </div>
         <span className={`text-xs font-semibold px-3 py-1 rounded-full border ${project.tagColor}`}>
@@ -89,7 +89,7 @@ function ProjectCard({ project }: { project: ProjectItem }) {
       <h3 className="text-base font-bold text-[#0F172A] mb-2">
         {project.title}
       </h3>
-      <p className="text-sm text-slate-500 leading-relaxed">
+      <p className="text-sm text-slate-600 leading-relaxed">
         {project.description}
       </p>
     </motion.div>
@@ -111,7 +111,7 @@ export default function Projects() {
           <div className="mx-auto w-16 h-0.5 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full" />
         </motion.div>
 
-        <motion.p variants={fadeInUp} className="text-center text-slate-500 mb-16 max-w-xl mx-auto">
+        <motion.p variants={fadeInUp} className="text-center text-slate-600 mb-16 max-w-xl mx-auto">
           私たちは現在、「つながり」をテーマに複数のプロジェクトを進めています。
         </motion.p>
 
@@ -153,7 +153,7 @@ export default function Projects() {
           </motion.div>
         </div>
 
-        <motion.p variants={fadeInUp} className="text-center text-slate-400 text-sm mt-12">
+        <motion.p variants={fadeInUp} className="text-center text-slate-600 text-sm mt-12">
           それぞれの領域で、「つながる価値」を提供しています。
         </motion.p>
       </div>
