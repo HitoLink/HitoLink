@@ -7,10 +7,14 @@ import './globals.css';
 // LCP を 7-8 秒に押し上げていた。日本語はシステムフォント
 // (Hiragino Sans / Yu Gothic / Noto Sans CJK JP) でフォールバックさせ、
 // Inter だけを Web フォントとして配信する。
+// Inter は装飾フォント。`preload: false` にして
+// LCP 候補（巨大な <h1>）がフォールバックフォントで即描画されるようにする。
+// swap によって Inter が読み込まれ次第差し替わる。
 const inter = Inter({
   variable: '--font-inter',
   subsets: ['latin'],
   display: 'swap',
+  preload: false,
 });
 
 // TODO: 本番ドメインが確定したら差し替える

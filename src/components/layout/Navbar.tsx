@@ -45,7 +45,11 @@ export default function Navbar() {
               alt=""
               width={32}
               height={32}
-              priority
+              // Navbar の 32x32 アイコンは LCP 候補ではないため
+              // preload しない。priority を付けると mobile で
+              // LCP 用の帯域を奪い、Speed Index と LCP を悪化させる。
+              loading="eager"
+              fetchPriority="low"
               className="w-8 h-8 object-contain"
             />
             <span className="text-xl font-bold text-[#0F172A] tracking-wide">HitoLink</span>
