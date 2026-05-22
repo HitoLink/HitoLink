@@ -33,7 +33,7 @@ export default function CeoGreeting() {
           {/* Portrait */}
           <Reveal variant="left">
             <div className="relative mx-auto max-w-xs lg:max-w-none">
-              <div className="aspect-[3/4] rounded-3xl overflow-hidden bg-gradient-to-br from-blue-50 via-white to-indigo-50 border border-blue-100 shadow-[0_8px_40px_rgba(30,58,138,0.1)] relative">
+              <div className="aspect-[3/4] rounded-3xl overflow-hidden bg-gradient-to-br from-slate-900 via-blue-950 to-indigo-950 border border-slate-700/60 shadow-[0_8px_40px_rgba(15,23,42,0.35)] relative">
                 <Image
                   src="/ceo.jpg"
                   alt="HitoLink 代表 星野 智範"
@@ -43,6 +43,13 @@ export default function CeoGreeting() {
                   quality={85}
                   placeholder="blur"
                   blurDataURL="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzIDQiPjxyZWN0IHdpZHRoPSIzIiBoZWlnaHQ9IjQiIGZpbGw9IiNlMmU4ZjAiLz48L3N2Zz4="
+                />
+
+                {/* Inner vignette: blend portrait edges into dark frame */}
+                <div
+                  className="absolute inset-0 pointer-events-none z-[5]"
+                  style={{ boxShadow: 'inset 0 0 60px 20px rgba(15, 23, 42, 0.65)' }}
+                  aria-hidden="true"
                 />
 
                 {/* Name overlay at bottom */}
@@ -55,7 +62,7 @@ export default function CeoGreeting() {
                   </div>
                 </div>
               </div>
-              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-2/3 h-6 bg-blue-200/50 blur-2xl rounded-full" />
+              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-2/3 h-6 bg-blue-500/30 blur-2xl rounded-full" />
             </div>
           </Reveal>
 
