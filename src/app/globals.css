@@ -86,6 +86,15 @@
   }
 }
 
+/* Below-the-fold セクションには content-visibility: auto を当て、
+   ビューポート外のレイアウト・ペイントをスキップする。Hero の LCP を
+   阻害する周辺コストを抑えるための装置で、CSS だけで完結する。
+   `contain-intrinsic-size` で初期スクロール高を予約し、CLS を防ぐ。 */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 800px;
+}
+
 * {
   box-sizing: border-box;
 }
