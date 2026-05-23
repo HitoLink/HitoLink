@@ -151,6 +151,22 @@ body {
   color: #0F172A;
   font-family: var(--font-sans);
   overflow-x: hidden;
+  /* HitoLink DS 和文組版:
+   *   palt: プロポーショナル詰め (記号類のアキを詰める)
+   *   pkna: 仮名のプロポーショナル詰め
+   *   ss01 (Inter): セリフ無しの 1 (ゼロとの識別性向上)
+   *   cv11 (Inter): single-storey a (より幾何学的)
+   * 行間・字間: 和文重視のリーディング (1.7 / 0.01em)
+   * 既存の Tailwind utility (leading-none / leading-relaxed 等) は
+   * 各セクション側で個別指定されているため、body のデフォルトを底上げ
+   * しても階層感を壊さない (Hero の H1 は leading-none で上書き済み)。 */
+  font-feature-settings: "palt" 1, "pkna" 1, "ss01" 1, "cv11" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-synthesis-weight: none;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
 }
 
 /* Custom scrollbar */
