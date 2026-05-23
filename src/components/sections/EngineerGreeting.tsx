@@ -27,7 +27,7 @@ export default function EngineerGreeting() {
 
         <div className="grid lg:grid-cols-2 gap-14 items-start">
           {/* Message */}
-          <Reveal variant="left" className="space-y-5">
+          <Reveal variant="left" className="order-2 lg:order-none space-y-5">
             <Terminal size={44} className="text-blue-300 mb-4" aria-hidden="true" />
             {message.map((para, i) => (
               <p
@@ -50,7 +50,7 @@ export default function EngineerGreeting() {
           </Reveal>
 
           {/* Code decoration */}
-          <Reveal variant="right">
+          <Reveal variant="right" className="order-1 lg:order-none">
             <div className="relative mx-auto max-w-xs lg:max-w-none">
               <div
                 aria-hidden="true"
