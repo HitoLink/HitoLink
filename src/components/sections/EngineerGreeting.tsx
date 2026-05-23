@@ -3,7 +3,7 @@ import SectionWrapper from '@/components/ui/SectionWrapper';
 import Reveal from '@/components/ui/Reveal';
 
 const message = [
-  'はじめまして、HitoLink で開発を担当している高岡 己太朗（Kotaro）です。',
+  'はじめまして、HitoLink で開発を担当している Kotaro です。',
   'HitoLink のビジョンは、社員全員が得意分野を活かし、成長し続けられる状態をつくることです。その実現のために、私は「人」と「データ」「プロダクト」をつなぐ技術基盤をつくることに重点を置いています。',
   '誰か一部の人だけが活躍できる環境ではなく、一人ひとりの強みが自然と引き出され、チームとして最大限に活きる。その土台になるのが、正確で扱いやすい情報設計や、ストレスなく使えるプロダクト体験だと考えています。',
   'だからこそ、私はコードの一行、API のインターフェース、画面の一つひとつにまでこだわります。「この仕様や UI は、本当にメンバーの成長や挑戦を後押しできているか？」を問い続けながら、日々開発に取り組んでいます。',
@@ -43,7 +43,7 @@ export default function EngineerGreeting() {
             ))}
             <div className="pt-6 border-t border-slate-100">
               <div className="text-right">
-                <div className="text-base font-bold text-[#0F172A]">高岡 己太朗</div>
+                <div className="text-base font-bold text-[#0F172A]">Kotaro</div>
                 <div className="text-xs text-slate-600 mt-0.5">HitoLink エンジニア</div>
               </div>
             </div>
