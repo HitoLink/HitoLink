@@ -11,6 +11,49 @@
     "Yu Gothic", "Yu Gothic UI", "Noto Sans CJK JP", "Meiryo", sans-serif;
 }
 
+/* =============================================================
+ * HitoLink Design System v0.1 — Platform tokens
+ * ─────────────────────────────────────────────────────────────
+ * DS の Platform 層（motion easing / duration / spotlight tint）のみを
+ * "足し算" で取り込む。HitoLink 既存のブランド色 (blue #2563EB / #1E3A8A)
+ * は完全保持。--spotlight-tint は HitoLink ブランド寄り (warm paper の
+ * 暖色は使わない) にオーバーライド済み。
+ * ============================================================= */
+:root {
+  /* Motion easings (DS standard) */
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);     /* default decelerate */
+  --ease-emphasized: cubic-bezier(0.32, 0.72, 0, 1);    /* spring-ish reveal */
+  --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
+
+  /* Motion durations (DS standard) */
+  --dur-quick: 150ms;
+  --dur-base: 240ms;
+  --dur-slow: 420ms;
+  --dur-page: 600ms;
+
+  /* Spotlight tint — HitoLink ブランド寄り (warm paper の暖色は使わず、
+     既存の blue ブランドに溶ける ink-blue ベース)。
+     hover halo / spotlight card 等で使用。 */
+  --spotlight-tint: rgba(37, 99, 235, 0.18);
+  --spotlight-tint-soft: rgba(37, 99, 235, 0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-quick: 0ms;
+    --dur-base: 0ms;
+    --dur-slow: 0ms;
+    --dur-page: 0ms;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-14px); }
@@ -108,6 +151,22 @@ body {
   color: #0F172A;
   font-family: var(--font-sans);
   overflow-x: hidden;
+  /* HitoLink DS 和文組版:
+   *   palt: プロポーショナル詰め (記号類のアキを詰める)
+   *   pkna: 仮名のプロポーショナル詰め
+   *   ss01 (Inter): セリフ無しの 1 (ゼロとの識別性向上)
+   *   cv11 (Inter): single-storey a (より幾何学的)
+   * 行間・字間: 和文重視のリーディング (1.7 / 0.01em)
+   * 既存の Tailwind utility (leading-none / leading-relaxed 等) は
+   * 各セクション側で個別指定されているため、body のデフォルトを底上げ
+   * しても階層感を壊さない (Hero の H1 は leading-none で上書き済み)。 */
+  font-feature-settings: "palt" 1, "pkna" 1, "ss01" 1, "cv11" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-synthesis-weight: none;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
 }
 
 /* Custom scrollbar */
