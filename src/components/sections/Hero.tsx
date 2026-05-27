@@ -84,16 +84,33 @@ export default function Hero() {
           className="flex flex-col sm:flex-row items-center justify-center gap-4 hero-rise"
           style={{ animationDelay: '300ms' }}
         >
+          {/* HitoLink DS: motion easing と spotlight tint を class-additive で適用。
+              色・shadow・border・bg は既存ブランドカラー保持。
+              transition は DS の var(--ease-emphasized) で spring 感を底上げ、
+              hover で --spotlight-tint の halo を薄く追加。 */}
           <a
             href="#about"
-            className="group inline-flex items-center gap-2 px-8 py-4 bg-[#1E3A8A] hover:bg-[#1E40AF] text-white font-semibold rounded-xl transition-all duration-300 shadow-[0_4px_20px_rgba(30,58,138,0.3)] hover:shadow-[0_6px_30px_rgba(30,58,138,0.45)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+            className="group inline-flex items-center gap-2 px-8 py-4 bg-[#1E3A8A] hover:bg-[#1E40AF] hover:-translate-y-0.5 text-white font-semibold rounded-xl shadow-[0_4px_20px_rgba(30,58,138,0.3)] hover:shadow-[0_6px_30px_rgba(30,58,138,0.45),0_0_24px_var(--spotlight-tint)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+            style={{
+              transition:
+                'transform var(--dur-base) var(--ease-emphasized), box-shadow var(--dur-slow) var(--ease-standard), background-color var(--dur-quick) var(--ease-standard)',
+            }}
           >
             私たちについて
-            <ArrowRight size={18} aria-hidden="true" className="group-hover:translate-x-1 transition-transform duration-200" />
+            <ArrowRight
+              size={18}
+              aria-hidden="true"
+              className="group-hover:translate-x-1"
+              style={{ transition: 'transform var(--dur-base) var(--ease-emphasized)' }}
+            />
           </a>
           <a
             href="#contact"
-            className="inline-flex items-center gap-2 px-8 py-4 border border-[#1E3A8A]/25 hover:border-[#1E3A8A]/60 text-[#1E3A8A] font-medium rounded-xl transition-all duration-300 hover:bg-blue-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+            className="inline-flex items-center gap-2 px-8 py-4 border border-[#1E3A8A]/25 hover:border-[#1E3A8A]/60 hover:-translate-y-0.5 text-[#1E3A8A] font-medium rounded-xl hover:bg-blue-50 hover:shadow-[0_0_20px_var(--spotlight-tint-soft)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+            style={{
+              transition:
+                'transform var(--dur-base) var(--ease-emphasized), box-shadow var(--dur-slow) var(--ease-standard), background-color var(--dur-quick) var(--ease-standard), border-color var(--dur-quick) var(--ease-standard)',
+            }}
           >
             お問い合わせ
           </a>
