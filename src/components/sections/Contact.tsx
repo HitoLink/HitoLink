@@ -2,8 +2,7 @@ import { Mail, ArrowRight } from 'lucide-react';
 import SectionWrapper from '@/components/ui/SectionWrapper';
 import Reveal from '@/components/ui/Reveal';
 
-// TODO: Replace with actual email address
-const EMAIL = 'contact@hitolink.example.com';
+const EMAIL = 'hitolink.office@gmail.com';
 
 export default function Contact() {
   return (
@@ -57,20 +56,6 @@ export default function Contact() {
           </a>
         </Reveal>
 
-        <Reveal as="p" delay={0.2} className="mt-4 text-xs text-slate-600">
-          ※ メールアドレスは準備中です。フォームからもご連絡いただけます。
-        </Reveal>
-
-        {/* CTA button */}
-        <Reveal delay={0.25} className="mt-12">
-          <a
-            href="#"
-            className="group inline-flex items-center gap-2 px-8 py-4 bg-[#1E3A8A] hover:bg-[#1E40AF] text-white font-semibold rounded-xl transition-all duration-300 shadow-[0_4px_20px_rgba(30,58,138,0.3)] hover:shadow-[0_6px_30px_rgba(30,58,138,0.45)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-          >
-            お問い合わせフォームへ
-            <ArrowRight size={18} aria-hidden="true" className="group-hover:translate-x-1 transition-transform duration-200" />
-          </a>
-        </Reveal>
       </div>
     </SectionWrapper>
   );

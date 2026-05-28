@@ -9,7 +9,6 @@ const navLinks = [
   { label: '概要', href: '#about' },
   { label: '代表挨拶', href: '#ceo' },
   { label: 'プロジェクト', href: '#projects' },
-  { label: '実績', href: '#achievements' },
 ];
 
 export default function Navbar() {
