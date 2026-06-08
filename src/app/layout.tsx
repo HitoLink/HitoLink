@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import { SITE_URL } from '@/lib/site';
 
 // Noto Sans JP は next/font 経由で読み込むと unicode-range ごとに数百の
 // @font-face を CSS に出力し、188KB の render-blocking CSS を生み出して
@@ -17,8 +18,6 @@ const inter = Inter({
   preload: false,
 });
 
-// TODO: 本番ドメインが確定したら差し替える
-const SITE_URL = 'https://hitolink.example.com';
 const SITE_NAME = 'HitoLink';
 const SITE_DESCRIPTION =
   'HitoLinkは、ITの力で人と人・企業をつなぐスタートアップです。アプリ開発を通じて、つながりと価値を生み出していきます。';

@@ -1,7 +1,5 @@
 import type { MetadataRoute } from 'next';
-
-// TODO: 本番ドメインが確定したら差し替える
-const SITE_URL = 'https://hitolink.example.com';
+import { SITE_URL } from '@/lib/site';
 
 export default function robots(): MetadataRoute.Robots {
   return {
