@@ -1,17 +1,12 @@
 import type { MetadataRoute } from 'next';
-
-// TODO: 本番ドメインが確定したら差し替える
-const SITE_URL = 'https://hitolink.example.com';
+import { IS_INDEXABLE, SITE_URL } from '@/lib/site';
 
 export default function robots(): MetadataRoute.Robots {
+  if (!IS_INDEXABLE) {
+    return { rules: [{ userAgent: '*', disallow: '/' }] };
+  }
   return {
-    rules: [
-      {
-        userAgent: '*',
-        allow: '/',
-        disallow: [],
-      },
-    ],
+    rules: [{ userAgent: '*', allow: '/' }],
     sitemap: `${SITE_URL}/sitemap.xml`,
     host: SITE_URL,
   };
