@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import { SITE_URL } from '@/lib/site';
+import { GOOGLE_SITE_VERIFICATION, IS_INDEXABLE, SITE_URL } from '@/lib/site';
 
 // Noto Sans JP は next/font 経由で読み込むと unicode-range ごとに数百の
 // @font-face を CSS に出力し、188KB の render-blocking CSS を生み出して
@@ -38,11 +38,11 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   robots: {
-    index: true,
-    follow: true,
+    index: IS_INDEXABLE,
+    follow: IS_INDEXABLE,
     googleBot: {
-      index: true,
-      follow: true,
+      index: IS_INDEXABLE,
+      follow: IS_INDEXABLE,
       'max-image-preview': 'large',
       'max-snippet': -1,
       'max-video-preview': -1,
@@ -74,6 +74,9 @@ export const metadata: Metadata = {
     icon: '/favicon.ico',
     apple: '/Icon.png',
   },
+  ...(GOOGLE_SITE_VERIFICATION && {
+    verification: { google: GOOGLE_SITE_VERIFICATION },
+  }),
 };
 
 const organizationJsonLd = {
@@ -83,11 +86,12 @@ const organizationJsonLd = {
   url: SITE_URL,
   logo: `${SITE_URL}/Icon.png`,
   description: SITE_DESCRIPTION,
+  email: 'hitolink.office@gmail.com',
   founder: {
     '@type': 'Person',
     name: '星野 智範',
   },
-  sameAs: [],
+  sameAs: ['https://github.com/HitoLink'],
 };
 
 export default function RootLayout({
