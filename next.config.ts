@@ -30,6 +30,13 @@ const nextConfig: NextConfig = {
       '@tsparticles/slim',
     ],
   },
+  // バーコードレジのデモ（public/demo/ichiba/ の Vite ビルド）。実ファイル以外の画面パスは index.html を返す
+  async rewrites() {
+    return [
+      { source: '/demo/ichiba', destination: '/demo/ichiba/index.html' },
+      { source: '/demo/ichiba/:path*', destination: '/demo/ichiba/index.html' },
+    ];
+  },
   async headers() {
     return [
       {
