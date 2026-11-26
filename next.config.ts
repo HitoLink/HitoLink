@@ -35,6 +35,9 @@ const nextConfig: NextConfig = {
     return [
       { source: '/demo/ichiba', destination: '/demo/ichiba/index.html' },
       { source: '/demo/ichiba/:path*', destination: '/demo/ichiba/index.html' },
+      // 星槎高校レポートのデモ（public/demo/seisa/ の Vite ビルド）
+      { source: '/demo/seisa', destination: '/demo/seisa/index.html' },
+      { source: '/demo/seisa/:path*', destination: '/demo/seisa/index.html' },
     ];
   },
   async headers() {
